@@ -1,0 +1,553 @@
+/*
+Website for css of Range type input elements:
+https://www.quirksmode.org/blog/archives/2015/11/styling_and_scr.html
+range elements has two parts
+1. thumb : circle part
+2. track : length part of range input element
+Their styling are browser dependent
+For styling thumb we use (pseudo-elements)
+-webkit-slider-thumb, -moz-range-thumb, or -ms-thumb.
+For styling track we use
+-webkit-slider-runnable-track, -moz-range-track, or -ms-track.
+
+
+The overflow CSS shorthand property sets the desired behavior
+when content does not fit in the element's padding box (overflows)
+in the horizontal and/or vertical direction.
+
+ property is specified as one or two <overflow> keyword values.
+If only one keyword is specified, both overflow-x and overflow-y
+are set to the same value. If two keywords are specified, 
+the first value applies to overflow-x in the horizontal direction
+ and the second one applies to overflow-y in the vertical direction.
+
+ Values:
+
+ overflow: visible(Overflow content is not clipped
+  and may be visible outside the element's padding box.
+   The element box is not a scroll container. )
+   there are many values
+   overflow:hidden(jo content ka part bahar ja raha hai i.e;
+                              overflow ho raha ho wh hide ho jayega.
+                              ish case mei scroll karke content ko dekh
+                              bhi nahi skte)
+   overflow:scroll(jo content overflow ho raha hai 
+                              ush content ko andar ki taraf scroll karke
+                              pura dekh saktey hai. isme scroll bar add ho jata hai)
+   overflow:auto(similar functionality of scroll jst difference is ki
+         scroll bar hmesha nahi dikhegi jab jrurat hoga
+         tb dikhegi)
+   overflow:clip(content ka jo part overflow hoga wh crop ho jata hai)
+*/
+
+/*
+spotify emei jo main body hai
+uske 3 parts hai 
+1) sidebar
+2) main content
+3) player
+isme purey body par scroll nii kar skte aur na hi uske player
+aur sidebar par kar skte hai
+only allowed part for scrolling is main-content
+so, we will only give overflow:scroll to main-content part
+and for rest we will set overflow : hidden
+*/
+body{
+               font-family: "Montserrat", sans-serif;
+               margin : 0;
+               background-color: #000;
+               color:#fff;
+               overflow: hidden;
+}
+.main{
+   display: flex;
+   
+   height: 100vh;
+   padding: 0.5rem;/*breathing space*/
+   margin-top:0.75rem;
+}
+.sidebar{
+   
+   background-color: #000;
+   width: 340px;
+   border-radius: 1rem;/*1rem=16pixel*/
+   margin-right: 0.5rem;
+   
+}
+.main-content{
+   background-color: #121212;
+   flex: 1;/*Meaning of flex-grow : 1 ka ye matlab hota hai container ke
+   andar jo elements hai un elements ko jo reqd. size chahiye wh unko dedo
+   baki ki khali space mujhe dedo. JIs bhi elemeent ko aisa chahiye hota hai
+   ush element ko flex-grow ki value 1 dene se hoga.*/
+   /*
+   Ultimately, the difference between flex: 1 and flex-grow: 1 is that the former sets flex-basis: 0 , and the latter keeps the default flex-basis: auto . For a complete explanation of the difference between flex-basis: 0 and flex-basis: auto see this post: Make flex-grow expand items based on their original size.
+   */
+   padding: 0rem 1.5rem 0rem 1.5rem;
+   border-radius: 1rem;/*1rem=16pixel*/
+   overflow: auto;/*auto is used when we want ki scroll bar tb dikhe jab
+    uski jrurat ho hmesha nahi dikhe */
+    /* margin-left:0.5rem; */
+   
+
+    
+}
+.music-player{
+   background-color: rgb(0, 0, 0);
+   position: fixed;
+   bottom: 0px;
+   left: 0.5rem;
+   right: 0.5rem;
+   width: 100%;
+   height: 72px;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-top: 1rem;
+}
+.nav{
+   background-color:#121212;
+   border-radius:1rem ;
+  display: flex;
+  flex-direction: column;
+   justify-content: center;
+   height: 100px;
+   /* width: 100vw; This was needed if we have used flex-grow:1 instead of flex:1
+   because when we are setting flex-grow : 1 then in that case this value 
+   sets the initial size of element to auto i.e; flex-basis: auto; 
+   and when flex:1 in this case the initial size is set to 0 i.e; flex-basis:0
+   it will occupy the available space not change it's width or height as per it's own */
+   padding: 0.5rem 0.75rem ;
+}
+.nav-option{
+   padding: 0.5rem 0.75rem ;
+   line-height: 1.5rem;
+   opacity: 0.7;
+}
+.nav-option:hover{
+   opacity: 1;
+}
+.nav-option i{
+   font-size: 1.25rem;
+}
+.nav-option a{
+   font-size: 1rem;
+   margin-left: 1rem;
+}
+a{
+   text-decoration:none;
+   color:white
+}
+.library{
+   background-color: #121212;
+   border-radius:1rem ;
+   height: 100%;
+   margin-top: 0.5rem;
+   padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+   
+}
+.options{
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   align-items: center;/*to make all items present inside to align center*/
+
+}
+
+.lib-option img{
+   height: 1.5rem;
+   width: 1.25rem;
+}
+.lib-option a{
+   font-size: 1rem;
+   margin-left: 1rem;
+}
+.lib-option{
+   padding: 0.25rem 0.75rem 0.25rem 0.75rem;
+   line-height: 2.5rem;
+   opacity: 0.7;
+}
+.lib-option:hover{
+   opacity: 1;
+}
+.icons{
+   font-size: 1.25rem;
+   display:flex;
+}
+
+.icons i{
+   opacity: 0.7;
+   margin-right: 1rem;
+}
+.icons i:hover{
+   opacity: 1;
+}
+/*library box*/
+.box{
+   /* height: rem; */
+   background-color: #232323; 
+  margin-top: 0.75rem;
+  margin-bottom: 1.75rem;
+  border-radius: 0.75rem;
+   padding: 0.75rem 1rem 0.75rem 1rem;
+     display: flex;
+     flex-direction: column;
+     flex-wrap: nowrap;
+}
+.box-p1{
+   font-size: 1rem;
+   font-weight: 500;
+}
+.box-p2{
+   font-size: 0.85rem;
+   opacity: 0.9;
+}
+.badge{
+   background-color: white;
+   border: none;
+   border-radius: 100px;
+   padding:0.25rem 1rem 0.25rem 1rem;
+   font-weight: 700;
+   margin-top:0.5rem;
+   /* font-size: 0.85rem; */
+   height: 2rem;
+   width: fit-content;/*fit-content combines the properties of min-content and max-content:
+   min-content: Ensures that an element will never be smaller than its content
+   max-content: Ensures that an element will never be larger than its container 
+   */
+}
+.badge:hover{
+   transform: scale(1.05);
+}
+
+/*Main content design*/
+/*
+navbar is there at the top
+for that navbar position : sticky
+
+difference b/w stickty and fixed
+
+fixed is all time fixed 
+but , in case of sticky initially it acts as normal element then it becomes 
+fixed as we scroll down
+
+
+*/
+/*
+WE HAVE USED Z-INDEX FOR OUR STICKY NAVBAR TO RESOLVE AN ISSUE
+WHEN WE SCROLL DOWN THE PAGE AND NAVBAR BECOMES STICKY THEN THE NAV
+BAR OVERLAPS THE CONTENTS OF THE PAGE AND THE CONTENTS ARE OVERLAPPING
+WITH STICKY NAVBAR
+SO, TO RESOLVE THIS
+WE WANT TO MAKE THE NAVBAR TO BE UP IN UPPER LAYERS AS COMPARED
+TO THE WHOLE CONTENT OF MAIN-CONTENT DIV FOR THAT WE HAVE USED
+Z-INDEX:1;
+*/
+.sticky-nav{
+   position:sticky;
+   background-color: #121212;
+   top:0;/*apply this or bottom, left, right to see the effect of position:sticky*/
+   display: flex;
+   justify-content: space-between;
+   align-items: center;/*for vertically aligning all items inside this to center*/
+   padding: 1rem 0rem 1rem 0rem;
+   z-index:1;
+   
+}
+/*
+NOTE 1) size increament for image: use height property
+size increament of icon (i) use font-size or line-height property
+*/
+.sticky-nav-icons {
+margin-left: 0.5rem;
+display: inline-flex;
+margin-right: 0.75rem;
+
+}
+.sticky-nav-icons img{
+   border-radius: 50%;
+   background-color: #000;
+   padding: 0.2rem;
+   margin-left: 0.5rem;
+   cursor: pointer;
+}
+.sticky-nav-options{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.nav-item{
+   margin-right: 1rem;
+}
+
+@media(max-width:1000px){
+   .hide{
+      display: none;
+   }
+}
+/*card inside main content*/
+
+.cards1{
+   background-color: #232323;
+   width: 168px;
+   border-radius: 0.5rem;
+   padding: 0.7rem;
+   margin-left: 1.5rem;
+   margin-top: 1rem;
+   
+}
+.cards1:hover{
+   background-color: #232323d6;
+   box-shadow: 0 0 8px #232323d6;
+}
+.cards-container{
+   display: flex;
+   flex-wrap: wrap;
+   margin-bottom: 1rem;
+  
+   /* justify-content: space-between; */
+}
+.card-img{
+   width: 100%;
+   border-radius: 0.5rem 0.5rem 0rem 0rem;
+
+}
+
+.card-title{
+   font-weight: 600;
+   margin: 1rem 0rem;
+
+}
+.card-info{
+   font-size: 0.85rem;
+   opacity: 0.8;
+   
+}
+.footer{
+   height: 300px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+.line{
+   width: 90%;
+   height: 50%;
+   border-top: 1px solid white;
+   opacity: 0.4;
+}
+/*music player*/
+.album{
+   
+   width: 25%;
+   display: flex;
+   align-items: center;
+   /* background-color: rgb(192, 233, 255); */
+   
+}
+.album img{
+   margin-left: 0.1rem;
+   height: 3rem;
+   border-radius: 0.5rem;
+}
+.album-info{
+   display: flex;
+   flex-direction: column;
+   align-items: start;
+   justify-content: center;
+   margin-left: 0.5rem;
+
+}
+.album-info p{
+   margin-bottom: 0px;
+   padding: 0.2rem;
+   line-height: 0.85em;
+   cursor: pointer;
+}
+
+.album-name{
+   font-weight: 500;
+   font-size: 0.909rem;
+   margin-top: 0px;
+   margin-bottom: 0;
+   line-height: 0.9rem;
+   letter-spacing: 0.1rem;
+}
+.artist-name{
+   margin-top: 0;
+   opacity: 0.7;
+   font-size: 0.7rem;
+
+}
+.artist-name:hover{
+   text-decoration: underline;
+}
+.icons{
+   display: flex;
+   align-items: center;
+   margin-left: 0.5rem;
+}
+.icons i{
+   margin-left: 0.5rem;
+   font-size: 1rem;
+   
+}
+
+/*player controls volume last section of music  player*/
+.controls{
+   display: flex;
+   flex-direction: column;
+   width: 25%;
+   justify-content: center;
+   align-items: center;
+   /* padding-right: 1rem; */
+   /* padding-left: 1rem; */
+   margin: 2rem;
+   position: relative;
+   padding-bottom: 0.8rem;
+   /* left: -8rem; */
+
+   
+}
+.in-controls{
+   position: absolute;
+   top: 0;
+   left:0;
+   right:2rem;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 0.4rem;
+  
+}
+
+.in-controls img{
+   height: 1rem;
+}
+.controls span{
+   height: 1rem;
+   font-size: 1.15rem;
+   margin: 0.2rem;
+}
+.material-symbols-outlined, .ly, .que{
+  opacity: 0.7;
+   font-size: 1.4rem;
+}
+
+
+
+.ly{
+   height: 1.2rem;
+   width: 1.2rem;
+   margin-top: -0.7rem;
+}
+.que{
+   height: 1.5rem;
+   width: 1.7rem;
+   margin-top: -0.6rem;
+}
+.material-symbols-outlined:hover, .ly:hover, .que:hover{
+   cursor: pointer;
+   opacity: 1;
+   transform: scale(1.04);
+}
+
+.volume{
+   font-size: 1.8rem;
+   padding: 0;
+   background-color: #000;
+}
+#vol{
+   width:6rem;
+   height: 0rem;
+}
+
+
+/*player design*/
+.player{
+   width: 50%;
+   /* background-color: antiquewhite; */
+}
+/* @media(max-width:580px){
+   .sidebar{
+      display: none;
+   }
+   .main-content{
+      width: 100%;
+   }
+   .con{
+      display: none;
+      margin-left:1rem ;
+   }
+.volume{
+   margin-left: 0.5rem;
+   padding-left:0;
+}
+   .artist-name{
+      display: none;
+   }
+} */
+/* @media(max-width:350px){
+   .headphone{
+      display: none;
+   }
+} */
+
+.player-control-icon{
+   height: 1rem;
+   margin-right: 1.75rem;
+   opacity: 0.7;
+}
+.player-control-icon:hover{
+   opacity: 1;
+}
+.player-controls{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.playback-bar{
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}/*
+The appearance CSS property ,
+ used to display UI of elements with platform-specific styling, 
+ based on the operating system's theme.
+
+ values
+ auto - The element will be styled according to the operating system's theme.
+ none - Hides certain features of widgets, such as arrow displayed in select       element, indicating that list can be expanded, all default features.
+
+ Note: If you wish to use this property on websites, you should test it very carefully. Although it is supported in most modern browsers, its implementation varies. In older browsers, even the keyword none does not have the same effect on all form elements across different browsers, and some do not support it at all. The differences are smaller in the newest browsers.
+
+ etc go on mdn for more
+*/
+#progress-bar{
+   width: 70%;
+   appearance:none;
+   background-color: transparent;
+   cursor: pointer;
+   margin: 0.85rem;
+}
+#progress-bar::-webkit-slider-runnable-track, #vol::-webkit-slider-runnable-track{
+   background-color: #ddd;
+   border-radius: 100px;
+   height: 0.2rem;
+}
+#progress-bar::-webkit-slider-thumb, #vol::-webkit-slider-thumb{
+   appearance: none;
+   height: 1rem;
+   width: 1rem;
+   background-color: #1bd760;
+   border-radius: 50%;
+   margin-top: -0.45rem;
+}
+#vol::-webkit-slider-thumb{
+   height: 1rem;
+   width: 1rem;
+}
+
+
+
+
